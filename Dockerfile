@@ -11,8 +11,6 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     golang-go
 
-RUN go version
-
 # build go files
 RUN export CGO_LDFLAGS=/usr/local/lib/libonig.a
 RUN export GO111MODULE=off
@@ -20,7 +18,7 @@ RUN go build -ldflags "-X ${PACKAGE}/core.Version=${version} -X ${PACKAGE}/core.
 
 
 RUN mkdir /grok && cp grok_exporter /grok
-RUN cd logstash-patterns-core && git submodule update && cd .. && cp logstash-patterns-core /grok/patterns
+RUN cd logstash-patterns-core && git submodule update && cd .. && cp -R logstash-patterns-core /grok/patterns
 RUN mkdir -p /etc/grok_exporter
 
 # use a safer base
