@@ -23,13 +23,10 @@ RUN mkdir /grok && cp grok_exporter /grok
 RUN cd logstash-patterns-core && git submodule update && cd .. && cp logstash-patterns-core /grok/patterns
 RUN mkdir -p /etc/grok_exporter
 
-
-
 # use a safer base
 FROM gcr.io/distroless/static:nonroot as run
 
 # copy stuff over
-COPY --from=build /grok /
 COPY --from=build /grok /
 COPY --from=build /etc/grok_exporter /etc/grok_exporter
 
