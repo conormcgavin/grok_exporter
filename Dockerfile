@@ -33,5 +33,5 @@ COPY --from=build /grok/grok_exporter .
 COPY --from=build /grok/patterns ./patterns/
 
 # run with config file
-CMD ["./grok_exporter", "-config", "/etc/grok_exporter/config.yml"]
+CMD ["grok_exporter", "-config", "/etc/grok_exporter/config.yml"]
 
